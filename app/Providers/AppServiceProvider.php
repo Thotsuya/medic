@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        
+        Carbon::setLocale('es');
+
+        Inertia::share('flash', function () {
+            return [
+                'message' => \Session::get('message'),
+            ];
+        });
+
+        Inertia::share('currency',function(){
+            return [
+                'currency' => \Session::get('currency'),
+                'currencies' => [
+                    config('currency.base_currency.code'),
+                    config('currency.target_currency.code'),
+                ]
+            ];
+        });
     }
 }

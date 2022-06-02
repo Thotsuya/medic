@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,6 +17,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public const PATIENT = 'patient';
+    public const ADMIN = 'admin';
+
     protected $fillable = [
         'name',
         'email',
@@ -42,4 +45,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['user_image'];
+
+
+    public function getUserImageAttribute(){
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->attributes['name']).'&color=7F9CF5&background=EBF4FF';
+    }
+
+    //Relationships
+    public function appointments(){
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function attentions(){
+        return $this->hasMany(Attention::class);
+    }
+
+    public function valuations(){
+        return $this->hasMany(Valuation::class);
+    }
+
+
 }
