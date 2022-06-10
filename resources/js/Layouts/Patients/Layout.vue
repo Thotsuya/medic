@@ -44,13 +44,10 @@ import '@fortawesome/fontawesome-free/js/all.js';
 import 'admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js'
 import "admin-lte/plugins/jquery/jquery.min.js"
 import "admin-lte/plugins/jquery-ui/jquery-ui.min.js"
-import $ from 'jquery'
 
 
-
-
-import Sidebar from "@/Layouts/Admin/Sidebar";
-import Topbar from "@/Layouts/Admin/Topbar";
+import Sidebar from "@/Layouts/Patients/Sidebar";
+import Topbar from "@/Layouts/Patients/Topbar";
 
 export default {
 

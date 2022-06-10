@@ -12,6 +12,7 @@ use App\ViewModels\ValuationViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use PDF;
 
 class ValuationController extends Controller
 {
@@ -22,13 +23,14 @@ class ValuationController extends Controller
      */
     public function index(Request $request)
     {
-        ray()->showQueries();
         return inertia('Valuations/Index', [
+
             'valuations' => new ValuationViewModel(Valuation::with('patient', 'procedures')
                 ->search($request->input('search', ''))
                 ->searchByPatient($request->input('search', ''))
                 ->latest('id')
                 ->paginate(8)->withQueryString()),
+
             'search' => $request->search,
         ]);
     }
@@ -50,11 +52,10 @@ class ValuationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ValuationRequest $request)
     {
-        ray($request->validated());
         try {
             DB::transaction(function () use ($request) {
 
@@ -96,11 +97,15 @@ class ValuationController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function edit($id)
+    public function edit(Valuation $valuation)
     {
-        //
+        return Inertia::render('Valuations/Edit', [
+            'valuation' => $valuation->load('procedures'),
+            'patients' => Patient::all(),
+            'procedures' => Procedure::select('id', 'name', 'price', 'price_USD')->paginate(10)->withQueryString(),
+        ]);
     }
 
     /**
@@ -108,11 +113,35 @@ class ValuationController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(ValuationRequest $request, Valuation $valuation)
     {
-        //
+        try {
+            \DB::transaction(function () use ($request, $valuation) {
+
+                $valuation->procedures()->detach();
+
+                $valuation->update($request->validated());
+
+                collect($request->validated()['procedures'])->each(function ($procedure) use ($valuation) {
+
+                    $valuation->procedures()->attach($procedure['id'], [
+                        'price' => $procedure['price'],
+                        'price_USD' => $procedure['price_USD'],
+                        'amount' => $procedure['amount'],
+                        'discount' => $procedure['discount'],
+                    ]);
+
+                });
+
+            });
+        } catch (\Exception $e) {
+            return redirect()->route('valuations.create')->with('message', $e->getMessage());
+        }
+
+        session()->flash('message', 'Presupuesto actualizado con éxito');
+        return redirect()->route('valuations.index');
     }
 
     /**
@@ -124,5 +153,13 @@ class ValuationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function report(Valuation $valuation)
+    {
+        $pdf = PDF::loadView('admin.reports.valuation', [
+            'valuation' => $valuation->load('procedures')
+        ]);
+        return $pdf->stream('Detalles de Presupuesto - ' . 'PT' . str_pad($valuation->id, 8, '0', STR_PAD_LEFT) . '.pdf');
     }
 }

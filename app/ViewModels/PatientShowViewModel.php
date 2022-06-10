@@ -2,7 +2,6 @@
 
 namespace App\ViewModels;
 
-use App\Models\Attention;
 use App\Models\Patient;
 use App\Models\Payment;
 use App\Services\CurrencyService;
@@ -17,7 +16,8 @@ class PatientShowViewModel extends ViewModel
     public function __construct(public Patient $patient){
         $patient->load('appointments')
                  ->load('attentions')
-                  ->load('payments');
+                  ->load('payments')
+                  ->load('documents');
         $this->currency = new CurrencyService();
     }
 

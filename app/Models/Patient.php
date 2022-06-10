@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -12,7 +11,7 @@ class Patient extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $fillable = ['name','address','phone','observations','document','birthdate','gender','tutor'];
+    protected $fillable = ['name','address','phone','observations','document','birthdate','gender','tutor','user_id'];
 
     public const GENDERS = [
         ['id' => 0,'name'=>'Hombre'],
@@ -59,10 +58,22 @@ class Patient extends Model
             ->where('paymentable_type', Attention::class);
     }
 
+    public function valuations(){
+        return $this->hasMany(Valuation::class);
+    }
+
+    public function documents(){
+        return $this->morphMany(Document::class,'documentable');
+    }
+
     public function scopeSearch($query,$name){
         return $query->where('name','LIKE',"%{$name}%");
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 
 

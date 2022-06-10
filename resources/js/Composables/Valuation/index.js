@@ -16,14 +16,14 @@ export default function useValuation() {
 
     const proceduresList = reactive([]);
 
-    const fillValuation = (attention) => {
-            (valuationForm.patient_id = attention.patient_id),
-            (valuationForm.description = attention.description),
-            (valuationForm.start_date = attention.start_date),
-            (valuationForm.price = attention.unformatted_price),
-            (valuationForm.observations = attention.observations),
-            (valuationForm.procedures = attention.procedures),
-            (valuationForm.uuid = attention.uuid);
+    const fillValuation = (valuation) => {
+            (valuationForm.patient_id = valuation.patient_id),
+            (valuationForm.description = valuation.description),
+            (valuationForm.start_date = valuation.start_date),
+            (valuationForm.price = valuation.unformatted_price),
+            (valuationForm.observations = valuation.observations),
+            (valuationForm.procedures = valuation.procedures),
+            (valuationForm.uuid = valuation.uuid);
     };
 
     const storeValuation = () => {

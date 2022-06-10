@@ -63,7 +63,6 @@
 
     </style>
 
-    @ray($attention->attention)
     <title>Detalles de Atencion - {{ $attention->attention['code'] }}</title>
 </head>
 <body>

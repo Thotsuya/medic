@@ -19,9 +19,7 @@
                         <div class="tab-content">
 
                             <General ref="generalTab"/>
-                            <div class="tab-pane fade" id="archivos" role="tabpanel" aria-labelledby="archivos-tab">
-
-                            </div>
+                            <Archivos/>
 
                         </div>
                     </div>
@@ -67,6 +65,7 @@ import { useStore } from 'vuex'
 
 import AppointmentsTable from "@/Components/Patients/AppointmentsTable";
 import General from "@/Pages/Patients/Partials/General";
+import Archivos from "@/Pages/Patients/Partials/Archivos";
 import PatientTabs from "@/Pages/Patients/Partials/PatientTabs";
 import PatientInfo from "@/Pages/Patients/Partials/PatientInfo";
 import InfoTabs from "@/Pages/Patients/Partials/InfoTabs";
@@ -88,6 +87,7 @@ export default {
         PatientInfo,
         PatientTabs,
         General,
+        Archivos,
         Layout,
         Head,
         AppointmentsTable,

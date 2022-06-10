@@ -1,4 +1,4 @@
-import { createStore } from "vuex";
+import {createStore} from "vuex";
 
 const store = createStore({
 
@@ -27,6 +27,9 @@ const store = createStore({
     getters: {
         getPatient(state) {
             return state.patient;
+        },
+        getDocuments(state){
+            return state.patient.documents
         },
         getAppointments(state) {
             return state.patient.appointments;

@@ -35,9 +35,9 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <Link :href="route('valuations.show',valuation.uuid)" type="button" class="btn btn-success" data-bs-toggle="tooltip" title="Detalles de Plan de tratamiento"><i class="fas fa-credit-card"></i></Link>
                                         <Link :href="route('valuations.edit',valuation.uuid)" type="button" class="btn btn-warning"  data-bs-toggle="tooltip" title="Editar plan de tratamiento"><i class="fas fa-edit"></i></Link>
-<!--                                        <a :href="route('valuations.report',valuation)" type="button" class="btn btn-primary" data-bs-toggle="tooltip" title="Exportar a PDF">-->
-<!--                                            <i class="fas fa-file-pdf"></i>-->
-<!--                                        </a>-->
+                                        <a :href="route('valuations.report',valuation.uuid)" type="button" class="btn btn-primary" data-bs-toggle="tooltip" title="Exportar a PDF">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </a>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" title="Eliminar plan de tratamiento"><i class="fas fa-times"></i></button>
                                     </div>
                                 </td>

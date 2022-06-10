@@ -54,6 +54,7 @@ import $ from 'jquery'
 import Sidebar from "@/Layouts/Admin/Sidebar";
 import Topbar from "@/Layouts/Admin/Topbar";
 import AlertSuccess from "@/Components/Alert/AlertSuccess";
+import {onMounted} from "vue";
 
 export default {
 
@@ -62,6 +63,23 @@ export default {
         Topbar,
         AlertSuccess,
     },
+
+    setup(){
+        onMounted(() => {
+            $('[data-widget="pushmenu"]').click(function () {
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                    $("body").removeClass("sidebar-toggled");
+                    $(".sidebar").removeClass("toggled");
+                } else {
+                    $(this).addClass("active");
+                    $("body").addClass("sidebar-toggled");
+                    $(".sidebar").addClass("toggled");
+                }
+            });
+        })
+    }
+
 
 }
 </script>

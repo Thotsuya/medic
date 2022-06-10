@@ -158,7 +158,7 @@ class AttentionController extends Controller
     public function report(Attention $attention)
     {
         $pdf = PDF::loadView('admin.reports.attention', [
-            'attention' => new AttentionShowViewModel($attention),
+            'attention' => new AttentionShowViewModel($attention->load('procedures')),
         ]);
         return $pdf->stream('Detalles de Atencion - ' . 'AT' . str_pad($attention->id, 8, '0', STR_PAD_LEFT) . '.pdf');
     }

@@ -28,10 +28,14 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-Route::group(['middleware' => 'auth:sanctum','prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth:sanctum','admin'],'prefix' => 'admin'], function () {
+
+    Route::redirect('/', '/admin/dashboard');
     Route::get('/dashboard',fn() => Inertia::render('Dashboard'))->name('dashboard');
 
+    Route::post('patients/files',[\App\Http\Controllers\Admin\PatientOperationsController::class,'storeDocument'])->name('patients.files');
     Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class)->except(['edit']);
+
 
     Route::put('appointments/{appointment}/status',[\App\Http\Controllers\Admin\AppointmentOperationsController::class,'updateAppointmentStatus'])->name('appointments.status');
     Route::put('appointments/{appointment}/restore',[\App\Http\Controllers\Admin\AppointmentOperationsController::class,'restoreAppointment'])->name('appointments.restore');
@@ -49,5 +53,10 @@ Route::group(['middleware' => 'auth:sanctum','prefix' => 'admin'], function () {
 
     Route::resource('valuations', \App\Http\Controllers\Admin\ValuationController::class);
     Route::put('valuations/{valuation}/procedures',[\App\Http\Controllers\Admin\ValuationUpdateController::class,'update'])->name('valuations.procedures.update');
+    Route::get('valuations/{valuation}/report',[\App\Http\Controllers\Admin\ValuationController::class,'report'])->name('valuations.report');
+});
 
+Route::group(['middleware' => 'auth:sanctum','prefix' => 'app','as' => 'client.'],function(){
+
+    Route::get('/dashboard',fn() => Inertia::render('Client/Dashboard'))->name('dashboard');
 });

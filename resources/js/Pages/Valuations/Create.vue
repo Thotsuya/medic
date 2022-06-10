@@ -48,17 +48,6 @@
 
                             <div class="clearfix row mt-3">
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 form-control-label">
-                                    <label for="name">Fecha de inicio</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
-                                    <Datepicker v-model="valuationForm.start_date" utc></Datepicker>
-                                    <span v-if="valuationForm.errors.start_date"
-                                          class="text-danger text-sm">{{ valuationForm.errors.start_date }}</span>
-                                </div>
-                            </div>
-
-                            <div class="clearfix row mt-3">
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 form-control-label">
                                     <label for="name">Precio <span class="text-danger">{{ currencyLabel }}</span>
                                     </label>
                                 </div>
@@ -201,8 +190,7 @@ export default {
     components: {
         Layout,
         Head,
-        Pagination,
-        Datepicker
+        Pagination
     },
 
     props: {
