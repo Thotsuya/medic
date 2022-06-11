@@ -20,7 +20,7 @@
 
                             <General ref="generalTab"/>
                             <Archivos/>
-
+                            <Notes/>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -66,6 +66,7 @@ import { useStore } from 'vuex'
 import AppointmentsTable from "@/Components/Patients/AppointmentsTable";
 import General from "@/Pages/Patients/Partials/General";
 import Archivos from "@/Pages/Patients/Partials/Archivos";
+import Notes from "@/Pages/Patients/Partials/Notes";
 import PatientTabs from "@/Pages/Patients/Partials/PatientTabs";
 import PatientInfo from "@/Pages/Patients/Partials/PatientInfo";
 import InfoTabs from "@/Pages/Patients/Partials/InfoTabs";
@@ -88,6 +89,7 @@ export default {
         PatientTabs,
         General,
         Archivos,
+        Notes,
         Layout,
         Head,
         AppointmentsTable,

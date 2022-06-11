@@ -1,9 +1,10 @@
 require('./bootstrap');
 
-import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/inertia-vue3';
-import { InertiaProgress } from '@inertiajs/progress';
+import {createApp, h} from 'vue';
+import {createInertiaApp} from '@inertiajs/inertia-vue3';
+import {InertiaProgress} from '@inertiajs/progress';
 import store from './store';
+
 const { RayPlugin } = require('vue-ray');
 window.$ = window.jQuery = require("jquery");
 
@@ -17,19 +18,6 @@ createInertiaApp({
             .use(plugin)
             .use(store)
             .use(RayPlugin, { interceptErrors: true, host: '127.0.0.1', port: 23517 })
-            .mixin({
-                methods: {
-                    error(field, errorBag = 'default') {
-                        if (!this.$page.props.errors.hasOwnProperty(errorBag)) {
-                            return null;
-                        }
-                        if (this.$page.props.errors[errorBag].hasOwnProperty(field)) {
-                            return this.$page.errors[errorBag][field][0];
-                        }
-                        return null;
-                    }
-                }
-            })
             .mixin({ methods: { route } })
             .mount(el);
     },

@@ -31,6 +31,38 @@
                         </Link>
                     </li>
 
+                    <li class="nav-item" :class="{ 'menu-open' : route().current('users.*') || route().current('roles.*') }">
+                        <a href="#" class="nav-link" :class="{ 'active' : route().current('users.*') || route().current('roles.*') }">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Gestión de Usuarios
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <Link :href="route('users.index')" class="nav-link" :class="{ 'active' : route().current('users.*') }">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Usuarios
+                                    </p>
+                                </Link>
+                            </li>
+
+                            <li class="nav-item">
+                                <Link :href="route('roles.index')" class="nav-link" :class="{ 'active' : route().current('roles.*') }">
+                                    <i class="nav-icon fas fa-cogs"></i>
+                                    <p>
+                                        Roles
+                                    </p>
+                                </Link>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
                     <li class="nav-item">
                         <Link :href="route('patients.index')"  class="nav-link" :class="{ active : route().current('patients.*') }">
                             <i class="nav-icon fas fa-users"></i>
@@ -107,8 +139,7 @@
 </template>
 
 <script>
-import { computed } from "vue";
-import { Link } from '@inertiajs/inertia-vue3'
+import {Link} from '@inertiajs/inertia-vue3'
 
 export default {
     components:{

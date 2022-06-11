@@ -36,6 +36,8 @@ Route::group(['middleware' => ['auth:sanctum','admin'],'prefix' => 'admin'], fun
     Route::post('patients/files',[\App\Http\Controllers\Admin\PatientOperationsController::class,'storeDocument'])->name('patients.files');
     Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class)->except(['edit']);
 
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+    Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
 
     Route::put('appointments/{appointment}/status',[\App\Http\Controllers\Admin\AppointmentOperationsController::class,'updateAppointmentStatus'])->name('appointments.status');
     Route::put('appointments/{appointment}/restore',[\App\Http\Controllers\Admin\AppointmentOperationsController::class,'restoreAppointment'])->name('appointments.restore');

@@ -66,14 +66,20 @@ class Patient extends Model
         return $this->morphMany(Document::class,'documentable');
     }
 
-    public function scopeSearch($query,$name){
-        return $query->where('name','LIKE',"%{$name}%");
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function notes(){
+        return $this->hasMany(Note::class);
+    }
+
+    public function scopeSearch($query,$name){
+        return $query->where('name','LIKE',"%{$name}%");
+    }
+
+
 
 
 

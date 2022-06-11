@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -50,6 +52,19 @@ class User extends Authenticatable
     protected $appends = ['user_image'];
 
 
+    protected static function booted()
+    {
+        parent::boot();
+        static::creating(function ($model){
+            $model->uuid = (string) Str::uuid();
+        });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     public function getUserImageAttribute(){
         return 'https://ui-avatars.com/api/?name='.urlencode($this->attributes['name']).'&color=7F9CF5&background=EBF4FF';
     }
@@ -71,4 +86,7 @@ class User extends Authenticatable
         return $this->hasOne(Patient::class);
     }
 
+    public function notes(){
+        return $this->hasMany(Note::class);
+    }
 }

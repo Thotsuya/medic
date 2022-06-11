@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('Welcome11'),
         ]);
 
+        $this->call(PermissionSeeder::class);
         $this->call(ProcedureSeeder::class);
         $this->call(PatientSeeder::class);
 

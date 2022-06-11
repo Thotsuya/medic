@@ -22,6 +22,7 @@ class PatientSeeder extends Seeder
 
         User::factory(30)->create()->each(function ($user) {
 
+            $user->assignRole('Paciente');
             $patient = Patient::factory()->create([ 'user_id' => $user->id]);
 
             $procedures = Procedure::all()->random(rand(1, 4))->keyBy('id')->mapWithKeys(function ($procedure) {

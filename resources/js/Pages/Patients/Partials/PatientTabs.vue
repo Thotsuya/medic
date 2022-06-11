@@ -19,15 +19,15 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="custom-tabs-two-notes-tab" data-toggle="pill"
-                   href="#notas" role="tab" aria-controls="notes" aria-selected="true"><i
+                   href="#notes" role="tab" aria-controls="notes" aria-selected="true"><i
                     class="mr-2 fas fa-notes-medical"></i>Notas</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" id="custom-tabs-three-notes-tab" data-toggle="pill" href="#history"
-                   role="tab" aria-controls="history" aria-selected="false"><i
-                    class="mr-2 fas fa-user-md"></i>Historia Clínica</a>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" id="custom-tabs-three-notes-tab" data-toggle="pill" href="#history"-->
+<!--                   role="tab" aria-controls="history" aria-selected="false"><i-->
+<!--                    class="mr-2 fas fa-user-md"></i>Historia Clínica</a>-->
+<!--            </li>-->
 
             <li class="nav-item">
                 <a class="nav-link" id="custom-tabs-four-notes-tab" data-toggle="pill" href="#timeline"

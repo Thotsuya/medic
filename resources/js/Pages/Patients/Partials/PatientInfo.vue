@@ -22,23 +22,28 @@
                 </li>
             </ul>
 
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-3">
+                            <button class="btn btn-primary"><i class="fas fa-teeth mr-2"></i>Odontograma</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
 
 <script>
-import { useStore } from 'vuex'
-import {onMounted} from "vue";
+import {useStore} from 'vuex'
 
 export default {
-    setup(){
+    setup() {
 
         const store = useStore()
         const patient = store.state.patient
-
-        onMounted(() => {
-            console.log('Hi')
-        })
 
         return {
             patient
