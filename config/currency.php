@@ -12,5 +12,9 @@ return [
     'currencies' => [
         'HNL',
         'USD'
+    ],
+    'prefix' => [
+        'base_currency' => '',
+        'target_currency' => '_USD',
     ]
 ];

@@ -88,6 +88,18 @@ class CurrencyService
         }
     }
 
+    public function getCurrencyPrefix(){
+        if (session()->has('currency')) {
+            if (session('currency') == $this->baseCurrency) {
+                return config('currency.prefix.base_currency');
+            } else {
+                return config('currency.prefix.target_currency');
+            }
+        }else{
+            return config('currency.prefix.base_currency');
+        }
+    }
+
 
 
 }

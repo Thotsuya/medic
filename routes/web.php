@@ -15,7 +15,6 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('/','/login');
 
 
 Route::get('/', function () {
@@ -27,13 +26,14 @@ Route::get('/', function () {
     ]);
 });
 
+Route::redirect('/','/login');
 
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['auth:sanctum','admin'],'prefix' => 'admin'], function () {
 
     Route::redirect('/', '/admin/dashboard');
-    Route::get('/dashboard',fn() => Inertia::render('Dashboard'))->name('dashboard');
+    Route::get('/dashboard',\App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
 
     Route::post('patients/files',[\App\Http\Controllers\Admin\PatientOperationsController::class,'storeDocument'])->name('patients.files');
     Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class)->except(['edit']);
