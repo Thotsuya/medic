@@ -26,14 +26,14 @@
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
                         <Link :href="route('dashboard')" class="nav-link" :class="{ active : route().current('dashboard') }">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <img src="./icons/increase.svg" alt="" class="nav-icon">
                             <p>Dashboard</p>
                         </Link>
                     </li>
 
                     <li class="nav-item" :class="{ 'menu-open' : route().current('users.*') || route().current('roles.*') }">
                         <a href="#" class="nav-link" :class="{ 'active' : route().current('users.*') || route().current('roles.*') }">
-                            <i class="nav-icon fas fa-users-cog"></i>
+                            <img src="./icons/team.svg" alt="" class="nav-icon">
                             <p>
                                 Gestión de Usuarios
                                 <i class="right fas fa-angle-left"></i>
@@ -43,7 +43,7 @@
 
                             <li class="nav-item">
                                 <Link :href="route('users.index')" class="nav-link" :class="{ 'active' : route().current('users.*') }">
-                                    <i class="nav-icon fas fa-users"></i>
+                                    <img src="./icons/team2.svg" alt="" class="nav-icon">
                                     <p>
                                         Usuarios
                                     </p>
@@ -52,7 +52,7 @@
 
                             <li class="nav-item">
                                 <Link :href="route('roles.index')" class="nav-link" :class="{ 'active' : route().current('roles.*') }">
-                                    <i class="nav-icon fas fa-cogs"></i>
+                                    <img src="./icons/user.svg" alt="" class="nav-icon">
                                     <p>
                                         Roles
                                     </p>
@@ -65,21 +65,21 @@
 
                     <li class="nav-item">
                         <Link :href="route('patients.index')"  class="nav-link" :class="{ active : route().current('patients.*') }">
-                            <i class="nav-icon fas fa-users"></i>
+                            <img src="./icons/patient.svg" alt="" class="nav-icon">
                             <p>Pacientes</p>
                         </Link>
                     </li>
 
                     <li class="nav-item">
                         <Link :href="route('appointments.index')"  class="nav-link" :class="{ active : route().current('appointments.*') }">
-                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <img src="./icons/appointment.svg" alt="" class="nav-icon">
                             <p>Citas</p>
                         </Link>
                     </li>
 
                     <li class="nav-item" :class="{ 'menu-open' : route().current('procedures.*') || route().current('attentions.*') || route().current('valuations.*') }">
                         <a href="#" class="nav-link" :class="{ 'active' : route().current('procedures.*') || route().current('attentions.*') || route().current('valuations.*') }">
-                            <i class="nav-icon fas fa-cogs"></i>
+                            <img src="./icons/dentist-chair.svg" alt="" class="nav-icon">
                             <p>
                                 Clínica
                                 <i class="right fas fa-angle-left"></i>
@@ -89,7 +89,7 @@
 
                             <li class="nav-item">
                                 <Link :href="route('procedures.index')" class="nav-link" :class="{ 'active' : route().current('procedures.*') }">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <img src="./icons/dentistry.svg" alt="" class="nav-icon">
                                     <p>
                                         Servicios
                                     </p>
@@ -98,7 +98,7 @@
 
                             <li class="nav-item">
                                 <Link :href="route('attentions.index')" class="nav-link" :class="{ 'active' : route().current('attentions.*') }">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <img src="./icons/dentist-chair2.svg" alt="" class="nav-icon">
                                     <p>
                                         Atenciones
                                     </p>
@@ -107,7 +107,7 @@
 
                             <li class="nav-item">
                                 <Link :href="route('valuations.index')" class="nav-link" :class="{ 'active' : route().current('valuations.*') }">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <img src="./icons/braces.svg" alt="" class="nav-icon">
                                     <p>
                                         Presupuestos
                                     </p>

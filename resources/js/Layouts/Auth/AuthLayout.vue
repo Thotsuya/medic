@@ -27,9 +27,7 @@ export default {
 }
 </script>
 
-<style>
-@import "./css/util.css";
-@import "./css/main.css";
+<style scoped>
 
 @font-face {
     font-family: Poppins-Regular;
@@ -66,8 +64,5 @@ export default {
     src: url('./fonts/montserrat/Montserrat-Regular.ttf');
 }
 
-.bg-login {
-    background-image: url('./images/bg-04.jpg');
-}
 
 </style>

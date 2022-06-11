@@ -35,6 +35,16 @@ export default {
 }
 </script>
 
+<style scoped>
+@import "../../Layouts/Auth/css/util.css";
+@import "../../Layouts/Auth/css/main.css";
+
+.bg-login {
+    background-image: url('../../Layouts/Auth/images/bg-04.jpg');
+}
+
+
+</style>
 
 
 <template>
