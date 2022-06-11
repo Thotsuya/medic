@@ -119,12 +119,29 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-lg-12 h-100">
+                <div class="card card-outline card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Ganancias por mes</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </Layout>
 </template>
 
 <script>
 import Layout from "@/Layouts/Admin/Layout";
 import { Link,Head } from '@inertiajs/inertia-vue3'
+import Chart from 'chart.js/auto';
+import {onMounted} from "vue";
 
 export default {
 
@@ -135,7 +152,44 @@ export default {
       }
     },
 
-    components: {Layout, Head,Link}
+    components: {Layout, Head,Link},
+
+    setup(props){
+
+        onMounted(() => {
+
+            new Chart(document.getElementById('lineChart'), {
+                type: 'bar',
+                data: {
+                    labels: props.dashboard.payments_labels,
+                    datasets: [{
+                        label: `Año ${new Date().getFullYear()}`,
+                        backgroundColor     : '#007bff',
+                        borderColor         : '#007bff',
+                        fill: false,
+                        data : props.dashboard.payments_values
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                display: true
+                            },
+                            gridLines: {
+                                drawOnChartArea: true,
+                                display: true,
+                                drawBorder: false,
+                            }
+                        }]
+                    },
+                    maintainAspectRatio: false
+                }
+            });
+        })
+    }
 }
 
 </script>

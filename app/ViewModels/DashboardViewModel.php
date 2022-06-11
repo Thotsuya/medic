@@ -86,12 +86,16 @@ class DashboardViewModel extends ViewModel
 
     public function payments_labels()
     {
-        return json_encode(collect($this->payments())->pluck('months'));
+        return collect($this->payments())->pluck('months')->toArray();
     }
 
-    public function payment_values()
+    public function payments_values()
     {
-        return json_encode(collect($this->payments())->pluck('sums'), JSON_NUMERIC_CHECK);
+        // Collect the payment sums and convert them to the float format
+        return collect($this->payments())->pluck('sums')->map(function ($sum) {
+            return (float) $sum;
+        })->toArray();
+
     }
 
     private function payments()
