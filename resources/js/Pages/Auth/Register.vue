@@ -1,62 +1,115 @@
-<script setup>
+<script>
 import BreezeButton from '@/Components/Button.vue';
-import BreezeGuestLayout from '@/Layouts/Guest.vue';
-import BreezeInput from '@/Components/Input.vue';
-import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import AuthLayout from "@/Layouts/Auth/AuthLayout";
+import {Head, Link, useForm} from '@inertiajs/inertia-vue3';
 
-const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    terms: false,
-});
+export default {
 
-const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+    components: {
+        AuthLayout,
+        BreezeButton,
+        Head,
+        Link,
+    },
+
+    setup(){
+        const form = useForm({
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: '',
+            terms: false,
+        });
+
+        const submit = () => {
+            form.post(route('register'), {
+                onFinish: () => form.reset('password', 'password_confirmation'),
+            });
+        }
+
+        return {
+            form,
+            submit,
+        };
+    }
 };
 </script>
 
+<style scoped>
+@import "../../Layouts/Auth/css/util.css";
+@import "../../Layouts/Auth/css/main.css";
+
+.bg-login {
+    background-image: url('../../Layouts/Auth/images/bg-04.jpg');
+}
+
+
+</style>
+
+
 <template>
-    <BreezeGuestLayout>
+    <AuthLayout>
         <Head title="Register" />
 
-        <BreezeValidationErrors class="mb-4" />
+<!--        <BreezeValidationErrors class="mb-4" />-->
 
-        <form @submit.prevent="submit">
-            <div>
-                <BreezeLabel for="name" value="Name" />
-                <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <form @submit.prevent="submit" class="login100-form validate-form">
+                    <span class="login100-form-title p-b-43">
+                    Registrarse como Paciente
+                </span>
+
+
+                        <div class="wrap-input100 validate-input" data-validate="Emáil valido requerido: ex@abc.xyz">
+                            <input class="input100 form-control" id="email" type="text" name="name"
+                                   v-model="form.name" required autofocus autocomplete="email" >
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Nombre</span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Emáil valido requerido: ex@abc.xyz">
+                            <input class="input100 form-control" id="email" type="email" name="email"
+                                   v-model="form.email" required autofocus autocomplete="email" >
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Email</span>
+                        </div>
+
+
+                        <div class="wrap-input100 validate-input" data-validate="Contraseña requerida">
+                            <input class="input100 form-control" id="password" type="password" name="password" required  v-model="form.password"
+                                   autocomplete="current-password">
+
+
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Contraseña</span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Contraseña requerida">
+                            <input class="input100 form-control" id="password_confirmation" type="password" name="password" required  v-model="form.password_confirmation"
+                                   autocomplete="current-password">
+
+
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Confirmar Contraseña</span>
+                        </div>
+
+
+
+                        <div class="container-login100-form-btn">
+                            <button type="submit" class="login100-form-btn">
+                                Registrarse
+                            </button>
+                        </div>
+
+
+                    </form>
+
+                    <div class="login100-more bg-login">
+                    </div>
+                </div>
             </div>
-
-            <div class="mt-4">
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <BreezeLabel for="password" value="Password" />
-                <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <BreezeLabel for="password_confirmation" value="Confirm Password" />
-                <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Already registered?
-                </Link>
-
-                <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </BreezeButton>
-            </div>
-        </form>
-    </BreezeGuestLayout>
+        </div>
+    </AuthLayout>
 </template>
