@@ -18,7 +18,7 @@
 
         .titulo{
             font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-            margin-top: 95px;
+            margin-top: 0px;
             margin-bottom: 25px;
             font-size: 28px;
         },
@@ -66,21 +66,21 @@
     <title>Detalles de Atencion - {{ $attention->attention['code'] }}</title>
 </head>
 <body>
-<header>
-    <div class="col-12 ">
-        <div class="">
-            <img class="image" src="{{ public_path('/assets/Logo.png') }}" alt="" srcset="">
-        </div>
-    </div>
-</header>
-<footer>
-    Managua, Nicaragua. <b>Dirección: </b> Raspados Loli del Zúmen 2 cuadras al Oeste y 1 Cuadra al Norte <b>Teléfonos: </b>2254 3268 - 8465 3772 - 8252 8361
-    <br>
-    <b>Correos: </b> info@guerreronic.com
-    <br>
-    <b>Visítanos: </b> guerreronic.com
-    </p>
-</footer>
+{{--<header>--}}
+{{--    <div class="col-12 ">--}}
+{{--        <div class="">--}}
+{{--            <img class="image" src="{{ public_path('/assets/Logo.png') }}" alt="" srcset="">--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</header>--}}
+{{--<footer>--}}
+{{--    Managua, Nicaragua. <b>Dirección: </b> Raspados Loli del Zúmen 2 cuadras al Oeste y 1 Cuadra al Norte <b>Teléfonos: </b>2254 3268 - 8465 3772 - 8252 8361--}}
+{{--    <br>--}}
+{{--    <b>Correos: </b> info@guerreronic.com--}}
+{{--    <br>--}}
+{{--    <b>Visítanos: </b> guerreronic.com--}}
+{{--    </p>--}}
+{{--</footer>--}}
 <br>
 <br>
 <main>

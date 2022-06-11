@@ -14,7 +14,7 @@
 
         .titulo {
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            margin-top: 8px;
+            margin-top: 0px;
             margin-bottom: 8px;
             font-size: 28px;
         }
@@ -86,22 +86,22 @@
     <title>Detalles de Presupuesto - {{ $valuation['code'] }}</title>
 </head>
 <body>
-<header>
-    <div class="col-12 ">
-        <div class="">
-            <img class="image" src="{{ asset('assets/Logo.png') }}" alt="" srcset="">
-        </div>
-    </div>
-</header>
-<footer>
-    <b>Correos: </b> info@guerreronic.com
-    <br>
-    <b>Visítanos: </b> guerreronic.com
-    </p>
-</footer>
+{{--<header>--}}
+{{--    <div class="col-12 ">--}}
+{{--        <div class="">--}}
+{{--            <img class="image" src="{{ asset('assets/Logo.png') }}" alt="" srcset="">--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</header>--}}
+{{--<footer>--}}
+{{--    <b>Correos: </b> info@guerreronic.com--}}
+{{--    <br>--}}
+{{--    <b>Visítanos: </b> guerreronic.com--}}
+{{--    </p>--}}
+{{--</footer>--}}
 
-<br>
-<br>
+{{--<br>--}}
+{{--<br>--}}
 <main>
 
     @php
@@ -116,13 +116,13 @@
             <div class="row align-items-center">
 
                 <div class="col-12 text-center">
-                    <div class="info-panel">
-                        <p><b>Dirección: </b> Raspados Loli del Zúmen 2 cuadras al Oeste y 1 Cuadra al Norte
-                            <br> <b>Teléfonos: </b>2254 3268 - 8465 3772 - 8252 8361
-                            <br>
-                            <b>RUC: </b> 570-221166-0000Y
-                        </p>
-                    </div>
+{{--                    <div class="info-panel">--}}
+{{--                        <p><b>Dirección: </b> Raspados Loli del Zúmen 2 cuadras al Oeste y 1 Cuadra al Norte--}}
+{{--                            <br> <b>Teléfonos: </b>2254 3268 - 8465 3772 - 8252 8361--}}
+{{--                            <br>--}}
+{{--                            <b>RUC: </b> 570-221166-0000Y--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
                     <div class="titulo">
                         <span class="text-secondary">Detalles del Presupuesto</span>
                     </div>
