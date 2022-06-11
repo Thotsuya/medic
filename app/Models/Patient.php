@@ -75,6 +75,10 @@ class Patient extends Model
         return $this->hasMany(Note::class);
     }
 
+    public function timelines(){
+        return $this->morphMany(Timeline::class,'timelineable');
+    }
+
     public function scopeSearch($query,$name){
         return $query->where('name','LIKE',"%{$name}%");
     }
