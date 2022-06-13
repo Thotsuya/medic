@@ -1,0 +1,268 @@
+.desabilitado {
+    fill: black;
+    stroke: black;
+    stroke-width: 1px;
+    opacity: 0.3;
+}
+
+.marcadoAzul {
+    fill: none;
+    stroke: blue;
+    stroke-width: 7px;
+}
+
+.marcadoVerde {
+    fill: green;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.marcadoMorado {
+    fill: #CC66CC;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.marcadoMarron {
+    fill: #CC6600;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.marcadoAmarillo {
+    fill: yellow;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.marcadoRojo {
+    fill: red;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.marcadoNaranja {
+    fill: orange;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.diente {
+    fill-opacity: 0;
+    stroke: black;
+    stroke-width: 1px;
+
+}
+
+.marcadoTomate {
+    fill: tomato;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.clasecero {
+    background-image: url('./assets/x2.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+}
+
+.clasecero3 {
+    background-image: url('./assets/x3.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+}
+
+.clasecero5 {
+    background-image: url('./assets/x4.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+}
+
+.clasecero7 {
+    background-image: url('./assets/x5.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+
+.clasecero9 {
+    background-image: url('./assets/x6.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+
+.clasecero11 {
+    background-image: url('./assets/x7.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+
+.clasecero13 {
+    background-image: url('./assets/x8.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+.clasecero15 {
+    background-image: url('./assets/x9.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+
+    background-size: 42px;
+
+}
+
+
+.clasecero17 {
+    background-image: url('./assets/x10.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+.clasecero19 {
+    background-image: url('./assets/x11.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+
+.clasecero21 {
+    background-image: url('./assets/x12.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+.clasecero23 {
+    background-image: url('./assets/x13.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+
+.clasecero25 {
+    background-image: url('./assets/x14.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+
+.clasecero27 {
+    background-image: url('./assets/x15.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 42px;
+
+}
+
+.btn0{
+    background-color: v-bind(tratamientoodonto.classbtn1);
+    fill: v-bind(tratamientoodonto.classbtn1);
+}
+
+.btn1{
+    background-color: v-bind(tratamientoodonto.classbtn2);
+    fill: v-bind(tratamientoodonto.classbtn2);
+}
+
+.btn2{
+    background-color: v-bind(tratamientoodonto.classbtn3);
+    fill: v-bind(tratamientoodonto.classbtn3);
+}
+
+.btn3{
+    background-color: v-bind(tratamientoodonto.classbtn4);
+    fill: v-bind(tratamientoodonto.classbtn4);
+}
+
+.btn4{
+    background-color: v-bind(tratamientoodonto.classbtn5);
+    fill: v-bind(tratamientoodonto.classbtn5);
+}
+
+.btn5 {
+    background-color: v-bind(tratamientoodonto.classbtn6);
+    fill: v-bind(tratamientoodonto.classbtn6);
+}
+
+.btn6{
+    background-color: v-bind(tratamientoodonto.classbtn7);
+    fill: v-bind(tratamientoodonto.classbtn7);
+}
+
+.btn7{
+    background-color: v-bind(tratamientoodonto.classbtn8);
+    fill: v-bind(tratamientoodonto.classbtn8);
+}
+
+.btn8{
+    background-color: v-bind(tratamientoodonto.classbtn9);
+    fill: v-bind(tratamientoodonto.classbtn9);
+}
+
+.btn9{
+    background-color: v-bind(tratamientoodonto.classbtn10);
+    fill: v-bind(tratamientoodonto.classbtn10);
+}
+
+.btn10{
+    background-color: v-bind(tratamientoodonto.classbtn11);
+    fill: v-bind(tratamientoodonto.classbtn11);
+}
+
+.btn11{
+    background-color: v-bind(tratamientoodonto.classbtn12);
+    fill: v-bind(tratamientoodonto.classbtn12);
+}
+
+.btn12{
+    background-color: v-bind(tratamientoodonto.classbtn13);
+    fill: v-bind(tratamientoodonto.classbtn13);
+}
+
+.btn13{
+    background-color: v-bind(tratamientoodonto.classbtn14);
+    fill: v-bind(tratamientoodonto.classbtn14);
+}
+
+.btn14{
+    background-color: v-bind(tratamientoodonto.classbtn15);
+    fill: v-bind(tratamientoodonto.classbtn15);
+}
+
+.btn15{
+    background-color: v-bind(tratamientoodonto.classbtn16);
+    fill: v-bind(tratamientoodonto.classbtn16);
+}
+
+.btn16{
+    background-color: v-bind(tratamientoodonto.classbtn17);
+    fill: v-bind(tratamientoodonto.classbtn17);
+}
+
+.btn17{
+    background-color: v-bind(tratamientoodonto.classbtn18);
+    fill: v-bind(tratamientoodonto.classbtn18);
+}

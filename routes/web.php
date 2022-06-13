@@ -36,6 +36,11 @@ Route::group(['middleware' => ['auth:sanctum','admin'],'prefix' => 'admin'], fun
     Route::get('/dashboard',\App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
 
     Route::post('patients/files',[\App\Http\Controllers\Admin\PatientOperationsController::class,'storeDocument'])->name('patients.files');
+    Route::get('/patients/{patient}/odontogram',[\App\Http\Controllers\Admin\OdontogramController::class,'index'])->name('patients.odontogram');
+
+    Route::post('/patients/{patient}/odontogram/rules',[\App\Http\Controllers\Admin\OdontogramController::class,'rules'])->name('patients.odontogram.rules');
+    Route::put('/patients/{patient}/odontogram',[\App\Http\Controllers\Admin\OdontogramController::class,'update'])->name('patients.odontogram.update');
+
     Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class)->except(['edit']);
 
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);

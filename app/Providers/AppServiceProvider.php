@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Patient;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
@@ -25,7 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+
+        Patient::observe(\App\Observers\PatientObserver::class);
+
         Carbon::setLocale('es');
 
         Inertia::share('flash', function () {

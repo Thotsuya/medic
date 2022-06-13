@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('timelineable_id')->nullable();
             $table->string('timelineable_type')->nullable();
             $table->longText('content');
+            $table->timestamps();
         });
     }
 

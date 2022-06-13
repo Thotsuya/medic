@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-3">
-                            <button class="btn btn-primary"><i class="fas fa-teeth mr-2"></i>Odontograma</button>
+                            <Link :href="route('patients.odontogram',patient.uuid)" class="btn btn-primary"><i class="fas fa-teeth mr-2"></i>Odontograma</Link>
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,14 @@
 
 <script>
 import {useStore} from 'vuex'
+import {Link} from '@inertiajs/inertia-vue3'
 
 export default {
+
+    components: {
+        Link
+    },
+
     setup() {
 
         const store = useStore()
