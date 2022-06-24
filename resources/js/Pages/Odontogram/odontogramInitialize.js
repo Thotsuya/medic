@@ -1,10 +1,15 @@
 import {ref} from "vue";
 import {useForm} from "@inertiajs/inertia-vue3";
+import toasts from "@/Composables/Toasts";
+import {useStore} from "vuex";
+import {Inertia} from "@inertiajs/inertia";
 
-export default function useOdontogram(){
+export default function useOdontogram(patient){
 
     const teeth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
     const col = ref('diente')
+    const store = useStore();
+    const { success, error, prompt } = toasts();
 
     const tratamientoodontoform = useForm({
         'anotaciones' : '',
@@ -72,7 +77,7 @@ export default function useOdontogram(){
 
             tratamientoodontoform.post(route('patients.odontogram.rules',tratamientoodontoform.idpaciente),{
                 preserveScroll: true,
-                onSuccess: () => { window.location.reload() }
+                onSuccess: () => { Inertia.get(route('patients.odontogram',patient)) }
             })
         })
 
@@ -103,6 +108,7 @@ export default function useOdontogram(){
     const updateOdontogram = () => {
         teethmap.put(route('patients.odontogram.update', teethmap.uuid),{
             preserveScroll: true,
+            onSuccess: () => { success('Odontograma actualizado') }
         })
     }
 

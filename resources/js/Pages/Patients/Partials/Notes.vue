@@ -10,19 +10,36 @@
         <div class="row">
             <div class="col-lg-12 col-sm-12">
                 <div class="float-right">
-                    <button type="button" class="btn btn-block btn-primary"><i class="mr-2 fas fa-save"></i>Guardar
+                    <button @click="storeNote" type="button" class="btn btn-block btn-primary"><i class="mr-2 fas fa-save"></i>Guardar
                     </button>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-12" v-if="notes.length" v-for="note in notes" :key="note.id">
+                <blockquote>
+                    <p v-html="note.content"></p>
+                    <small v-html="note.footer_text"></small>
+                </blockquote>
+
+            </div>
+            <blockquote v-else class="quote-info">
+                <h5>Información</h5>
+                <p>Aún no se guardado notas para este paciente
+                    Puedes escribir una nota para este paciente en el cuadro de texto de la parte superior</p>
+            </blockquote>
+        </div>
+
     </div>
 </template>
 
 <script>
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import {QuillEditor} from '@vueup/vue-quill'
-import {useForm} from "@inertiajs/inertia-vue3";
-import {useStore} from 'vuex'
+import useNotes from "@/Composables/Notes";
+import {computed} from "vue";
+import {useStore} from "vuex";
 
 export default {
 
@@ -31,23 +48,20 @@ export default {
     },
 
     setup() {
-        const notesForm = useForm({
-            'patient_id': useStore().getters.getPatient.id,
-            'content': '<p>Hello World!</p>'
+
+        const store = useStore();
+        const { notesForm,storeNote } = useNotes()
+
+        const notes = computed(() => {
+            return store.getters.getPatient.notes
         })
 
-        const storeNote = () => {
-            // notesForm.post(route('patients.notes'))
-        }
-
-        const deleteNote = () => {
-            // notesForm.delete(route('patients.notes'))
-        }
-
-
         return {
-            notesForm
+            notesForm,
+            notes,
+            storeNote
         }
+
     }
 }
 </script>

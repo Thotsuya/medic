@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth:sanctum','admin'],'prefix' => 'admin'], fun
 
     Route::resource('patients', \App\Http\Controllers\Admin\PatientController::class)->except(['edit']);
 
+    Route::resource('notes', \App\Http\Controllers\Admin\NotesController::class);
+
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
 

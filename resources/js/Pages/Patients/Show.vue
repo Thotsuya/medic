@@ -21,6 +21,7 @@
                             <General ref="generalTab"/>
                             <Archivos/>
                             <Notes/>
+                            <Timeline :timelines="timelines" />
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -67,11 +68,13 @@ import AppointmentsTable from "@/Components/Patients/AppointmentsTable";
 import General from "@/Pages/Patients/Partials/General";
 import Archivos from "@/Pages/Patients/Partials/Archivos";
 import Notes from "@/Pages/Patients/Partials/Notes";
+import Timeline from "@/Pages/Patients/Partials/Timeline";
 import PatientTabs from "@/Pages/Patients/Partials/PatientTabs";
 import PatientInfo from "@/Pages/Patients/Partials/PatientInfo";
 import InfoTabs from "@/Pages/Patients/Partials/InfoTabs";
 import AttentionsTable from "@/Components/Patients/AttentionsTable";
 import PaymentsTable from "@/Components/Patients/PaymentsTable";
+
 
 export default {
 
@@ -79,7 +82,11 @@ export default {
         patient: {
             type: Object,
             required: true
-        }
+        },
+        timelines: {
+            type: Object,
+            required: true
+        },
     },
 
     components: {
@@ -89,6 +96,7 @@ export default {
         PatientTabs,
         General,
         Archivos,
+        Timeline,
         Notes,
         Layout,
         Head,

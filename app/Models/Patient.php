@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 class Patient extends Model
@@ -18,7 +20,8 @@ class Patient extends Model
         ['id' => 1,'name'=>'Mujer']
     ];
 
-    protected $appends = ['profile_photo_url'];
+    protected $appends = ['profile_photo_url','is_adult'];
+
 
     public function getRouteKeyName()
     {
@@ -41,6 +44,12 @@ class Patient extends Model
         return 'https://ui-avatars.com/api/?name='.urlencode($this->attributes['name']).'&background=0D8ABC&color=fff';
     }
 
+    public function IsAdult() : Attribute
+    {
+        return new Attribute(
+            get: fn ($value, $attributes) => Carbon::parse($attributes['birthdate'])->diffInYears() >= 18
+        );
+    }
 
     //Relationships
 

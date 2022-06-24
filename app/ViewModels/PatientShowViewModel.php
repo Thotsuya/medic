@@ -17,6 +17,7 @@ class PatientShowViewModel extends ViewModel
         $patient->load('appointments')
                  ->load('attentions')
                   ->load('payments')
+                  ->load('notes')
                   ->load('documents');
         $this->currency = new CurrencyService();
     }

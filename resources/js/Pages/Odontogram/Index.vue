@@ -254,11 +254,25 @@ export default {
 
     setup(props){
 
-        const { initialize,tratamientoodontoform,teethmap,updateOdontogram } = useOdontogram();
+        const { initialize,tratamientoodontoform,teethmap,updateOdontogram } = useOdontogram(props.patient.uuid);
 
         onMounted(() => {
 
             initialize();
+            if(props.patient.is_adult){
+                document.getElementById('child-1').style.display = 'none';
+                document.getElementById('child-2').style.display = 'none';
+                document.getElementById('child-3').style.display = 'none';
+                document.getElementById('child-4').style.display = 'none';
+            }else{
+                console.log('es niño');
+                document.getElementById('adult-1').style.display = 'none';
+                document.getElementById('adult-2').style.display = 'none';
+                document.getElementById('adult-3').style.display = 'none';
+                document.getElementById('adult-4').style.display = 'none';
+            }
+
+
             new Modal(document.getElementById('myModal'));
             // remove # from classbtn prop value
             console.log('Mounted')

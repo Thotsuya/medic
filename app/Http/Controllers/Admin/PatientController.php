@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientRequest;
 use App\Models\Patient;
+use App\Models\Timeline;
 use App\ViewModels\PatientShowViewModel;
 use App\ViewModels\PatientViewModel;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Inertia\Inertia;
 
 class PatientController extends Controller
@@ -21,10 +23,10 @@ class PatientController extends Controller
     {
         return Inertia::render('Patients/Index', [
             'patients' => new PatientViewModel(Patient::query()
-                            ->search($request->search)
-                            ->latest('id')
-                            ->paginate(8)
-                            ->withQueryString()),
+                ->search($request->search)
+                ->latest('id')
+                ->paginate(8)
+                ->withQueryString()),
             'search' => $request->search,
         ]);
     }
@@ -36,13 +38,13 @@ class PatientController extends Controller
      */
     public function create()
     {
-        Return Inertia::render('Patients/Create');
+        return Inertia::render('Patients/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StorePatientRequest $request)
@@ -56,19 +58,36 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Inertia\Response
      */
-    public function show(Patient $patient)
+    public function show(Request $request, Patient $patient)
     {
-        return Inertia::render('Patients/Show',[
-            'patient' => new PatientShowViewModel($patient)
+        $timeline = Timeline::where('timelineable_id', $patient->id)
+            ->where('timelineable_type', Patient::class)
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->groupBy(function ($item) {
+                return $item->created_at->translatedFormat('d F Y');
+            })
+            ->toArray();
+
+        $paginate = 1;
+        $page = $request->page ?? 1;
+        $offSet = ($page * $paginate) - $paginate;
+        $itemsForCurrentPage = array_slice($timeline, $offSet, $paginate, true);
+        $timelines = new LengthAwarePaginator($itemsForCurrentPage, count($timeline), $paginate, $page, ['path' => route('patients.show', $patient->uuid)]);
+
+        return Inertia::render('Patients/Show', [
+            'patient' => new PatientShowViewModel($patient),
+            'timelines' => $timelines,
         ]);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit()
@@ -79,8 +98,8 @@ class PatientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(StorePatientRequest $request, Patient $patient)
@@ -93,7 +112,7 @@ class PatientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

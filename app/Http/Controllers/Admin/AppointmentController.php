@@ -17,7 +17,7 @@ class AppointmentController extends Controller
     public function index()
     {
         return inertia('Appointments/Index',[
-           'patients' => Patient::select(['id','name'])->get(),
+           'patients' => Patient::select(['id','name','birthdate'])->get(),
            'appointments' => Appointment::with(['patient','user'])->get()
         ]);
     }

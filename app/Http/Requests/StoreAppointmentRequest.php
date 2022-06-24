@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Patient;
+use App\Rules\PreventDuplicateHours;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 
@@ -27,7 +28,7 @@ class StoreAppointmentRequest extends FormRequest
     {
         return [
             'patient_id' => 'required|exists:patients,id',
-            'start_date' => 'required|date',
+            'start_date' => ['required','date',new PreventDuplicateHours()],
             'color' => 'required',
             'title' => 'required',
             'end_date' => 'required|date',

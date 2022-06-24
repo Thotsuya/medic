@@ -30,7 +30,7 @@
 <!--            </li>-->
 
             <li class="nav-item">
-                <a class="nav-link" id="custom-tabs-four-notes-tab" data-toggle="pill" href="#timeline"
+                <a class="nav-link" id="custom-tabs-four-timeline-tab" data-toggle="pill" href="#timeline"
                    role="tab" aria-controls="timeline" aria-selected="false"><i
                     class="mr-2 far fa-clock"></i>Historial</a>
             </li>

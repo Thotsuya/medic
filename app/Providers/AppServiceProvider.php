@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Appointment;
+use App\Models\Attention;
 use App\Models\Patient;
+use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
@@ -28,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
     {
 
         Patient::observe(\App\Observers\PatientObserver::class);
+        Appointment::observe(\App\Observers\AppointmentObserver::class);
+        Attention::observe(\App\Observers\AttentionObserver::class);
+        Payment::observe(\App\Observers\PaymentObserver::class);
 
         Carbon::setLocale('es');
 

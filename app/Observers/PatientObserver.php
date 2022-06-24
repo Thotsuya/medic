@@ -14,12 +14,11 @@ class PatientObserver
     {
         //
         $timeline = new Timeline();
-        $timeline->content = '<div>
+        $timeline->content = '
         <i class="fas fa-user bg-green"></i>
         <div class="timeline-item">
-          <span class="time"><i class="fas fa-clock"></i> '.Carbon::now()->translatedFormat('g:i A').'</span>
-          <h3 class="timeline-header no-border">Paciente <a href="#">'.$patient->name.'</a> ha sido registrado en el sistema</h3>
-        </div>
+          <span class="time"><i class="fas fa-clock"></i> ' . Carbon::now()->translatedFormat('g:i A') . '</span>
+          <h3 class="timeline-header no-border">Paciente <a href="#">' . $patient->name . '</a> ha sido registrado en el sistema</h3>
         </div>';
         $patient->timeline()->save($timeline);
         $this->createOdontogram($patient);
@@ -28,19 +27,18 @@ class PatientObserver
     /**
      * Handle the Patient "updated" event.
      *
-     * @param  \App\Models\Patient  $patient
+     * @param \App\Models\Patient $patient
      * @return void
      */
     public function updated(Patient $patient)
     {
         //
         $timeline = new Timeline();
-        $timeline->content = '<div>
+        $timeline->content = '
         <i class="fas fa-user bg-info"></i>
         <div class="timeline-item">
-          <span class="time"><i class="fas fa-clock"></i> '.Carbon::now()->translatedFormat('g:i A').'</span>
-          <h3 class="timeline-header no-border">Se modificaron los datos del paciente <a href="#">'.$patient->name.'</a></h3>
-        </div>
+          <span class="time"><i class="fas fa-clock"></i> ' . Carbon::now()->translatedFormat('g:i A') . '</span>
+          <h3 class="timeline-header no-border">Se modificaron los datos del paciente <a href="#">' . $patient->name . '</a></h3>
         </div>';
         $patient->timeline()->save($timeline);
     }
@@ -48,19 +46,18 @@ class PatientObserver
     /**
      * Handle the Patient "deleted" event.
      *
-     * @param  \App\Models\Patient  $patient
+     * @param \App\Models\Patient $patient
      * @return void
      */
     public function deleted(Patient $patient)
     {
         //
         $timeline = new Timeline();
-        $timeline->content = '<div>
+        $timeline->content = '
         <i class="fas fa-user bg-danger"></i>
         <div class="timeline-item">
-          <span class="time"><i class="fas fa-clock"></i> '.Carbon::now()->translatedFormat('g:i A').'</span>
-          <h3 class="timeline-header no-border">Paciente <a href="#">'.$patient->name.'</a> ha sido dado de baja</h3>
-        </div>
+          <span class="time"><i class="fas fa-clock"></i> ' . Carbon::now()->translatedFormat('g:i A') . '</span>
+          <h3 class="timeline-header no-border">Paciente <a href="#">' . $patient->name . '</a> ha sido dado de baja</h3>
         </div>';
         $patient->timeline()->save($timeline);
     }
@@ -68,34 +65,34 @@ class PatientObserver
     /**
      * Handle the Patient "restored" event.
      *
-     * @param  \App\Models\Patient  $patient
+     * @param \App\Models\Patient $patient
      * @return void
      */
     public function restored(Patient $patient)
     {
         //
         $timeline = new Timeline();
-        $timeline->content = '<div>
+        $timeline->content = '
         <i class="fas fa-user bg-info"></i>
         <div class="timeline-item">
-          <span class="time"><i class="fas fa-clock"></i> '.Carbon::now()->translatedFormat('g:i A').'</span>
-          <h3 class="timeline-header no-border">Paciente <a href="#">'.$patient->name.'</a> ha sido dado de alta</h3>
-        </div>
+          <span class="time"><i class="fas fa-clock"></i> ' . Carbon::now()->translatedFormat('g:i A') . '</span>
+          <h3 class="timeline-header no-border">Paciente <a href="#">' . $patient->name . '</a> ha sido dado de alta</h3>
         </div>';
         $patient->timeline()->save($timeline);
     }
 
-    private function createOdontogram(Patient $patient){
+    private function createOdontogram(Patient $patient)
+    {
 
         $odontograma = new Tooth();
         $odontograma->canvar = '<table class="table">
         <tbody>
-            <tr align="center">
+           <tr id="adult-1" align="center">
               <td>18</td><td>17</td><td>16</td><td>15</td>
               <td>14</td><td>13</td><td>12</td><td>11</td><td></td><td></td><td>21</td>
               <td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
           </tr>
-          <tr>
+          <tr id="adult-2">
             <td><svg height="50" width="50">
                 <polygon points="10,10 50,10 40,20 20,20" estado="0" value="pd2" class="diente agregar"></polygon>
                 <polygon points="50,10 50,50 40,40 40,20" estado="0" value="pd2" class="diente agregar"></polygon>
@@ -211,12 +208,12 @@ class PatientObserver
                 <polygon points="20,20 40,20 40,40 20,40" estado="0" value="pd5" class="diente agregar"></polygon>
                 </svg></td>
           </tr>
-          <tr align="center">
+          <tr id="child-1" align="center">
               <td></td><td></td><td></td><td>55</td><td>54</td><td>53</td>
               <td>52</td><td>51</td><td></td><td></td><td>61</td><td>62</td>
               <td>63</td><td>64</td><td>65</td><td></td><td></td><td></td>
           </tr>
-          <tr>
+          <tr id="child-2">
               <td></td><td></td><td></td>
                <td><svg height="50" width="50">
                 <polygon points="10,10 50,10 40,20 20,20" estado="0" value="pd2" class="diente agregar"></polygon>
@@ -291,12 +288,12 @@ class PatientObserver
                 </svg></td>
                 <td></td><td></td><td></td>
           </tr>
-          <tr align="center">
+          <tr id="child-3" align="center">
               <td></td><td></td><td></td><td>85</td><td>84</td><td>83</td>
               <td>82</td><td>81</td><td></td><td></td><td>71</td><td>72</td>
               <td>73</td><td>74</td><td>75</td><td></td><td></td><td></td>
           </tr>
-                <tr>
+              <tr id="child-4">
               <td></td><td></td><td></td>
                <td><svg height="50" width="50">
                 <polygon points="10,10 50,10 40,20 20,20" estado="0" value="pd2" class="diente agregar"></polygon>
@@ -371,12 +368,12 @@ class PatientObserver
                 </svg></td>
                 <td></td><td></td><td></td>
           </tr>
-                <tr align="center">
+          <tr id="adult-3" align="center">
               <td>48</td><td>47</td><td>46</td><td>45</td>
               <td>44</td><td>43</td><td>42</td><td>41</td><td></td><td></td><td>31</td>
               <td>32</td><td>33</td><td>34</td><td>35</td><td>36</td><td>37</td><td>38</td>
           </tr>
-          <tr>
+          <tr id="adult-4">
             <td><svg height="50" width="50">
                 <polygon points="10,10 50,10 40,20 20,20" estado="0" value="pd2" class="diente agregar"></polygon>
                 <polygon points="50,10 50,50 40,40 40,20" estado="0" value="pd2" class="diente agregar"></polygon>
