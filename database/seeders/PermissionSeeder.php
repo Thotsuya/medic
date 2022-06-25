@@ -58,7 +58,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Ver Pagos']);
 
         Role::create(['name' => 'Administrador'])->givePermissionTo(Permission::all()->modelKeys());
-        Role::create(['name' => 'Doctor'])->givePermissionTo(['Ver Dashboard','Ver Citas', 'Crear Citas', 'Editar Citas', 'Eliminar Citas']);
+        Role::create(['name' => 'Doctor'])->givePermissionTo(Permission::all()->modelKeys());
         Role::create(['name' => 'Paciente']);
 
         User::find(1)->assignRole('Administrador');

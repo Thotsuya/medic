@@ -28,6 +28,8 @@ Route::get('/', function () {
 
 Route::redirect('/','/login');
 
+Route::post('currency/{currency}',[\App\Http\Controllers\CurrencyController::class,'setCurrency'])->name('currency.set');
+
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['auth:sanctum','admin'],'prefix' => 'admin'], function () {
@@ -53,7 +55,6 @@ Route::group(['middleware' => ['auth:sanctum','admin'],'prefix' => 'admin'], fun
     Route::resource('appointments', \App\Http\Controllers\Admin\AppointmentController::class)->only(['index','store','destroy']);
 
     Route::resource('procedures', \App\Http\Controllers\Admin\ProcedureController::class);
-    Route::post('currency/{currency}',[\App\Http\Controllers\CurrencyController::class,'setCurrency'])->name('currency.set');
 
     Route::put('attentions/{attention}/procedures',[\App\Http\Controllers\Admin\AttentionUpdateController::class,'update'])->name('attentions.procedures.update');
     Route::get('attentions/{attention}/report',[\App\Http\Controllers\Admin\AttentionController::class,'report'])->name('attentions.report');
@@ -69,5 +70,8 @@ Route::group(['middleware' => ['auth:sanctum','admin'],'prefix' => 'admin'], fun
 
 Route::group(['middleware' => 'auth:sanctum','prefix' => 'app','as' => 'client.'],function(){
 
-    Route::get('/dashboard',fn() => Inertia::render('Client/Dashboard'))->name('dashboard');
+    Route::get('/dashboard',\App\Http\Controllers\Patient\DashboardController::class)->name('dashboard');
+    Route::get('/attentions/{attention}',[\App\Http\Controllers\Patient\AttentionController::class,'show'])->name('attentions.show');
+    Route::get('/valuations/{valuation}',[\App\Http\Controllers\Patient\ValuationController::class,'show'])->name('valuations.show');
+    Route::post('/appointments',[\App\Http\Controllers\Patient\AppointmentController::class,'store'])->name('appointments.store');
 });

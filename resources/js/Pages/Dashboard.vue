@@ -62,15 +62,15 @@
                <div class="small-box bg-success">
                    <div class="inner">
 <!--                       <h3>{{ dashboard.pending_contacts }}</h3>-->
-                       <h3>0</h3>
+                       <h3>{{ dashboard.valuations_count }}</h3>
 
-                       <p>Solicitudes de Contacto</p>
+                       <p>Cotizaciones</p>
                    </div>
                    <div class="icon">
                        <i class="fas fa-address-book"></i>
                    </div>
-                   <Link :href="route('patients.index')" class="small-box-footer">
-                       Ver Solicitudes <i class="fas fa-arrow-circle-right"></i>
+                   <Link :href="route('valuations.index')" class="small-box-footer">
+                       Ver Cotizaciones <i class="fas fa-arrow-circle-right"></i>
                    </Link>
                </div>
            </div>

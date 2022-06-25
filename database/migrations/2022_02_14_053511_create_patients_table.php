@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('tutor')->nullable();
             $table->string('document')->nullable();
-            $table->text('address');
-            $table->string('phone');
-            $table->dateTime('birthdate');
+            $table->text('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->dateTime('birthdate')->nullable();
             $table->integer('gender')->default(0);
             $table->text('observations')->nullable();
             $table->softDeletes();

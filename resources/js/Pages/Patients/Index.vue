@@ -40,7 +40,10 @@
                                     <td>{{ patient.phone }}</td>
                                     <td class="text-center" v-html="patient.badge"></td>
                                     <td class="text-center">
-                                        <Link :href="route('patients.show',patient)" class="btn btn-primary waves-effect"><i class="fas fa-id-card-alt"></i></Link>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <Link :href="route('patients.show',patient)" class="btn btn-primary waves-effect"><i class="fas fa-id-card-alt"></i></Link>
+                                            <button @click="deletePatient(patient.uuid)" class="btn btn-danger waves-effect"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr v-else>
@@ -78,6 +81,7 @@ import Pagination from "@/Components/Pagination";
 import { Inertia } from "@inertiajs/inertia";
 import { Head,Link } from '@inertiajs/inertia-vue3'
 import {ref,watch} from "vue";
+import usePatient from "@/Composables/Patient";
 
 export default {
     props: {
@@ -95,6 +99,7 @@ export default {
     setup(props) {
 
         const search = ref(props.search);
+        const { deletePatient } = usePatient();
 
         watch(() => search.value, () => {
             _.debounce(() => {
@@ -110,7 +115,8 @@ export default {
         });
 
         return {
-            search
+            search,
+            deletePatient
         }
 
     }

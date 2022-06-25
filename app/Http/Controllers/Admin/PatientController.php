@@ -72,11 +72,14 @@ class PatientController extends Controller
             })
             ->toArray();
 
+        ray($timeline);
+
         $paginate = 1;
         $page = $request->page ?? 1;
         $offSet = ($page * $paginate) - $paginate;
         $itemsForCurrentPage = array_slice($timeline, $offSet, $paginate, true);
         $timelines = new LengthAwarePaginator($itemsForCurrentPage, count($timeline), $paginate, $page, ['path' => route('patients.show', $patient->uuid)]);
+
 
         return Inertia::render('Patients/Show', [
             'patient' => new PatientShowViewModel($patient),
@@ -115,8 +118,10 @@ class PatientController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Patient $patient)
     {
-        //
+        $patient->delete();
+        session()->flash('message','Paciente dado de baja correctamente.');
+        return redirect()->route('patients.index');
     }
 }

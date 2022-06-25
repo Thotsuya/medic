@@ -5,8 +5,6 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Patient;
-use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Appointment extends Model
@@ -19,7 +17,7 @@ class Appointment extends Model
 
     protected $fillable = ['title', 'color', 'description', 'user_id', 'status', 'start_date', 'end_date', 'textcolor', 'patient_id'];
     protected $with = ['user'];
-    protected $appends = ['start', 'formatted_date', 'formatted_time', 'status_badge'];
+    protected $appends = ['start', 'formatted_date', 'formatted_time', 'status_badge','is_today'];
 
     //Relationships
     public function patient()
@@ -58,6 +56,11 @@ class Appointment extends Model
             self::PENDING => '<span class="badge badge-warning">Pendiente</span>',
             self::ATTENDED => '<span class="badge badge-success">Atendido</span>',
         };
+    }
+
+    public function getIsTodayAttribute()
+    {
+        return Carbon::parse($this->attributes['start_date'])->isToday();
     }
 
     public function markAsAttended()

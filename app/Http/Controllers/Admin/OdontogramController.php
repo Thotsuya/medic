@@ -21,10 +21,9 @@ class OdontogramController extends Controller
     }
 
     public function rules(OdontogramRequest $request){
-        ray($request->validated());
+
         $map = Map::where('patient_id',$request->validated()['patient_id'])->first();
         $map->update($request->validated());
-        ray('Hi');
         return redirect()->route('patients.odontogram',$map->patient);
     }
 

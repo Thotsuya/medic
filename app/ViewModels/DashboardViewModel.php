@@ -7,6 +7,7 @@ use App\Models\Attention;
 use App\Models\Contact;
 use App\Models\Patient;
 use App\Models\Payment;
+use App\Models\Valuation;
 use App\Services\CurrencyService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ class DashboardViewModel extends ViewModel
     public $attentions;
     public $payments;
     public $currency;
+    public $valuations_count;
 
     public function __construct()
     {
@@ -46,6 +48,8 @@ class DashboardViewModel extends ViewModel
             ])
             ->groupBy('months')
             ->get();
+
+        $this->valuations_count = Valuation::count();
     }
 
     public function patients_count()

@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 export default function toasts(){
 
     const success = (message) => {
+
         Swal.mixin({
             toast: true,
             position: 'top-end',
