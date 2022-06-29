@@ -57,6 +57,7 @@ class UserRequest extends FormRequest
     {
        return array_merge(parent::validated(),[
            'password' => bcrypt($this->password),
+           'role' => 'admin',
        ]);
     }
 
