@@ -11,16 +11,16 @@ use Illuminate\Support\Str;
 
 class Patient extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name','address','phone','observations','document','birthdate','gender','tutor','user_id'];
+    protected $fillable = ['name', 'address', 'phone', 'observations', 'document', 'birthdate', 'gender', 'tutor', 'user_id'];
 
     public const GENDERS = [
-        ['id' => 0,'name'=>'Hombre'],
-        ['id' => 1,'name'=>'Mujer']
+        ['id' => 0, 'name' => 'Hombre'],
+        ['id' => 1, 'name' => 'Mujer']
     ];
 
-    protected $appends = ['profile_photo_url','is_adult'];
+    protected $appends = ['profile_photo_url', 'is_adult'];
 
 
     public function getRouteKeyName()
@@ -28,11 +28,12 @@ class Patient extends Model
         return 'uuid';
     }
 
-    protected static function boot(){
+    protected static function boot()
+    {
         parent::boot();
 
-        static::creating(function  ($model)  {
-            $model->uuid = (string) Str::uuid();
+        static::creating(function ($model) {
+            $model->uuid = (string)Str::uuid();
         });
     }
 
@@ -41,13 +42,20 @@ class Patient extends Model
     // profile_photo_url
     public function getProfilePhotoUrlAttribute()
     {
-        return 'https://ui-avatars.com/api/?name='.urlencode($this->attributes['name']).'&background=0D8ABC&color=fff';
+        return 'https://ui-avatars.com/api/?name=' . urlencode($this->attributes['name']) . '&background=0D8ABC&color=fff';
     }
 
-    public function IsAdult() : Attribute
+    public function IsAdult(): Attribute
     {
         return new Attribute(
-            get: fn ($value, $attributes) => Carbon::parse($attributes['birthdate'])->diffInYears() >= 18
+            get: fn($value, $attributes) => Carbon::parse($attributes['birthdate'])->diffInYears() >= 18
+        );
+    }
+
+    public function Age(): Attribute
+    {
+        return new Attribute(
+            get: fn($value, $attributes) => Carbon::parse($attributes['birthdate'])->diffInYears()
         );
     }
 

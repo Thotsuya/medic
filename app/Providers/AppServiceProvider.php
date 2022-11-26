@@ -52,5 +52,12 @@ class AppServiceProvider extends ServiceProvider
                 ]
             ];
         });
+
+        Inertia::share('permissions',function(){
+            return auth()->check() ?  auth()->user()->getAllPermissions()->map(function($permission){
+                return $permission->name;
+            }) : [];
+        });
+
     }
 }

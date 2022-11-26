@@ -130,6 +130,7 @@ import { computed,ref } from "vue";
 import { Modal } from 'bootstrap'
 
 import useAppointment from "@/Composables/Appointment";
+import {usePage} from "@inertiajs/inertia-vue3";
 
 export default {
 
