@@ -11,7 +11,7 @@
                 <div class="card card-primary card-outline h-100">
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle" src="http://clinic.test/assets/backend/default.jpg" alt="User profile picture">
+                            <img class="profile-user-img img-fluid img-circle" src="http://localhost:8000/assets/backend/default.jpg" alt="User profile picture">
                         </div>
 
                         <h3 class="text-center profile-username">Nombre: {{ patientForm.name }}</h3>
@@ -135,7 +135,7 @@ export default {
             $('.select2').on('change',(event) => {
                 patientForm.gender = event.target.value
             });
-            
+
         });
 
 
